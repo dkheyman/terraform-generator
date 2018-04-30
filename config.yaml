@@ -1,0 +1,19 @@
+template_file: iam.py
+resources:
+  aws_iam_role:
+    developer_s3_role:
+      name: developer_s3_role
+      assume_role_policy: '${file("assume_role_ec2.json")}'
+      instance_profile: ec2_profile
+    developer_ec2_role:
+      name: developer_ec2_role
+      assume_role_policy: '${file("assume_role_ec2.json")}'
+  aws_iam_policy:
+    s3_policy:
+      name: s3_policy
+      path: /
+      policy: '${file("s3_policy.json")}'
+    ec2_policy:
+      name: ec2_policy
+      path: /
+      policy: '${file("ec2_policy.json")}'
